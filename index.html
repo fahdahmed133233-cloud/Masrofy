@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#09070c">
+    <title>Masrofy | Personal Finance</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <!-- Profile hero -->
+    <header class="profile-hero">
+        <img
+            id="profileBackground"
+            class="profile-background"
+            alt="Your profile background"
+        >
+
+        <div class="profile-gradient"></div>
+
+        <div class="hero-top">
+            <a class="brand-small" href="#" aria-label="Masrofy home">
+                <span class="brand-icon">M</span>
+                <span>Masrofy<span class="brand-dot">.</span></span>
+            </a>
+
+            <button id="editProfileBtn" class="edit-profile-btn" type="button">
+                Edit Profile
+            </button>
+        </div>
+
+        <div class="profile-content">
+            <div>
+                <p class="profile-greeting" id="profileGreeting">
+                    Hello, User 👋
+                </p>
+                <p class="profile-subtitle">
+                    Welcome back to Masrofy
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Profile setup modal -->
+    <div class="profile-modal" id="profileModal" hidden>
+        <form class="profile-form" id="profileForm">
+            <div class="modal-heading">
+                <span class="brand-icon">M</span>
+                <div>
+                    <h2>Your Profile</h2>
+                    <p>Make Masrofy yours.</p>
+                </div>
+            </div>
+
+            <label for="profileName">Your name</label>
+            <input
+                type="text"
+                id="profileName"
+                placeholder="Enter your name"
+                maxlength="40"
+                required
+            >
+
+            <label for="profileImage">Your background photo</label>
+            <input
+                type="file"
+                id="profileImage"
+                accept="image/*"
+            >
+
+            <p class="form-hint">
+                Choose a wide photo for the best result. Your photo stays
+                in this browser.
+            </p>
+
+            <div class="profile-actions">
+                <button type="submit" class="primary-btn">Save Profile</button>
+                <button type="button" id="cancelProfileBtn" class="secondary-btn">
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <main class="container">
+
+        <!-- Welcome -->
+        <section class="section-heading">
+            <div>
+                <p class="eyebrow">PERSONAL FINANCE</p>
+                <h1>Your financial dashboard</h1>
+                <p class="section-description">
+                    Track your money. Build your future.
+                </p>
+            </div>
+        </section>
+
+        <!-- Summary cards -->
+        <section class="summary-grid">
+            <article class="summary-card balance-card">
+                <div class="card-top">
+                    <span class="card-label">Total Balance</span>
+                    <span class="card-icon">◈</span>
+                </div>
+                <p class="money-value" id="totalBalance">EGP 0.00</p>
+                <p class="card-footnote">Income minus expenses</p>
+            </article>
+
+            <article class="summary-card">
+                <div class="card-top">
+                    <span class="card-label">Total Income</span>
+                    <span class="card-icon income-icon">↗</span>
+                </div>
+                <p class="money-value" id="totalIncome">EGP 0.00</p>
+                <p class="card-footnote">Money received</p>
+            </article>
+
+            <article class="summary-card">
+                <div class="card-top">
+                    <span class="card-label">Total Expenses</span>
+                    <span class="card-icon expense-icon">↘</span>
+                </div>
+                <p class="money-value" id="totalExpenses">EGP 0.00</p>
+                <p class="card-footnote">Money spent</p>
+            </article>
+        </section>
+
+        <!-- Financial goal -->
+        <section class="panel goal-panel">
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">YOUR NEXT MILESTONE</p>
+                    <h2>Financial Goal 🎯</h2>
+                </div>
+                <span class="goal-icon">✦</span>
+            </div>
+
+            <form id="goalForm" class="goal-form">
+                <label for="goalAmount">Set your target (EGP)</label>
+                <div class="goal-input-row">
+                    <input
+                        type="number"
+                        id="goalAmount"
+                        min="1"
+                        step="0.01"
+                        placeholder="e.g. 5000"
+                        required
+                    >
+                    <button type="submit" class="primary-btn">Save Goal</button>
+                </div>
+            </form>
+
+            <div class="goal-progress-heading">
+                <span id="goalStatus">Set a goal to get started</span>
+                <span id="goalPercent">0%</span>
+            </div>
+
+            <div
+                class="progress-track"
+                id="goalProgressTrack"
+                role="progressbar"
+                aria-label="Financial goal progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+            >
+                <div class="progress-fill" id="goalProgressFill"></div>
+            </div>
+
+            <p class="card-footnote" id="goalRemaining">
+                Your progress will appear here.
+            </p>
+        </section>
+
+        <!-- Add transaction -->
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">KEEP IT ORGANIZED</p>
+                    <h2>Add a transaction</h2>
+                </div>
+                <span class="panel-icon">＋</span>
+            </div>
+
+            <form id="transactionForm" class="transaction-form">
+                <div class="form-field">
+                    <label for="transactionTitle">Transaction name</label>
+                    <input
+                        type="text"
+                        id="transactionTitle"
+                        placeholder="e.g. Allowance, books..."
+                        maxlength="80"
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="transactionAmount">Amount (EGP)</label>
+                    <input
+                        type="number"
+                        id="transactionAmount"
+                        placeholder="0.00"
+                        min="0.01"
+                        step="0.01"
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="transactionType">Type</label>
+                    <select id="transactionType" required>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="primary-btn add-btn">
+                    + Add Transaction
+                </button>
+            </form>
+        </section>
+
+        <!-- Transaction history -->
+        <section class="panel history-panel">
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">YOUR ACTIVITY</p>
+                    <h2>Recent transactions</h2>
+                </div>
+                <span class="history-count" id="transactionCount">0 items</span>
+            </div>
+
+            <div id="transactionList" class="transaction-list">
+                <div class="empty-state">
+                    <span class="empty-icon">◈</span>
+                    <h3>No transactions yet</h3>
+                    <p>Add your first transaction to get started.</p>
+                </div>
+            </div>
+        </section>
+
+        <footer class="site-footer">
+            <a class="footer-brand" href="#">Masrofy<span>.</span></a>
+            <p>Your money. Your control.</p>
+            <p class="footer-note">Made to help you understand your money.</p>
+        </footer>
+
+    </main>
+
+</body>
+</html>
